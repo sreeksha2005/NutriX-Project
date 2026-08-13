@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DetectRouteImport } from './routes/detect'
 import { Route as DietRouteImport } from './routes/diet'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ResultRouteImport } from './routes/result'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,9 +37,19 @@ const HomeRoute = HomeRouteImport.update({
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultRoute = ResultRouteImport.update({
+  id: '/result',
+  path: '/result',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -46,14 +58,18 @@ export interface FileRoutesByFullPath {
   '/detect': typeof DetectRoute
   '/diet': typeof DietRoute
   '/home': typeof HomeRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/result': typeof ResultRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/detect': typeof DetectRoute
   '/diet': typeof DietRoute
   '/home': typeof HomeRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/result': typeof ResultRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +77,25 @@ export interface FileRoutesById {
   '/detect': typeof DetectRoute
   '/diet': typeof DietRoute
   '/home': typeof HomeRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/result': typeof ResultRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/detect' | '/diet' | '/home' | '/register'
+  fullPaths:
+    '/' | '/detect' | '/diet' | '/home' | '/profile' | '/register' | '/result'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/detect' | '/diet' | '/home' | '/register'
-  id: '__root__' | '/' | '/detect' | '/diet' | '/home' | '/register'
+  to: '/' | '/detect' | '/diet' | '/home' | '/profile' | '/register' | '/result'
+  id:
+    | '__root__'
+    | '/'
+    | '/detect'
+    | '/diet'
+    | '/home'
+    | '/profile'
+    | '/register'
+    | '/result'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,7 +103,9 @@ export interface RootRouteChildren {
   DetectRoute: typeof DetectRoute
   DietRoute: typeof DietRoute
   HomeRoute: typeof HomeRoute
+  ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
+  ResultRoute: typeof ResultRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -109,11 +138,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register': {
       id: '/register'
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/result': {
+      id: '/result'
+      path: '/result'
+      fullPath: '/result'
+      preLoaderRoute: typeof ResultRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -124,7 +167,9 @@ const rootRouteChildren: RootRouteChildren = {
   DetectRoute: DetectRoute,
   DietRoute: DietRoute,
   HomeRoute: HomeRoute,
+  ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
+  ResultRoute: ResultRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
