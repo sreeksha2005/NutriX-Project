@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DetectRouteImport } from './routes/detect'
 import { Route as DietRouteImport } from './routes/diet'
+import { Route as EditProfileRouteImport } from './routes/edit-profile'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
@@ -30,6 +31,11 @@ const DetectRoute = DetectRouteImport.update({
 const DietRoute = DietRouteImport.update({
   id: '/diet',
   path: '/diet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditProfileRoute = EditProfileRouteImport.update({
+  id: '/edit-profile',
+  path: '/edit-profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/detect': typeof DetectRoute
   '/diet': typeof DietRoute
+  '/edit-profile': typeof EditProfileRoute
   '/home': typeof HomeRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/detect': typeof DetectRoute
   '/diet': typeof DietRoute
+  '/edit-profile': typeof EditProfileRoute
   '/home': typeof HomeRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/detect': typeof DetectRoute
   '/diet': typeof DietRoute
+  '/edit-profile': typeof EditProfileRoute
   '/home': typeof HomeRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
@@ -84,14 +93,30 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/detect' | '/diet' | '/home' | '/profile' | '/register' | '/result'
+    | '/'
+    | '/detect'
+    | '/diet'
+    | '/edit-profile'
+    | '/home'
+    | '/profile'
+    | '/register'
+    | '/result'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/detect' | '/diet' | '/home' | '/profile' | '/register' | '/result'
+  to:
+    | '/'
+    | '/detect'
+    | '/diet'
+    | '/edit-profile'
+    | '/home'
+    | '/profile'
+    | '/register'
+    | '/result'
   id:
     | '__root__'
     | '/'
     | '/detect'
     | '/diet'
+    | '/edit-profile'
     | '/home'
     | '/profile'
     | '/register'
@@ -102,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DetectRoute: typeof DetectRoute
   DietRoute: typeof DietRoute
+  EditProfileRoute: typeof EditProfileRoute
   HomeRoute: typeof HomeRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
@@ -129,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/diet'
       fullPath: '/diet'
       preLoaderRoute: typeof DietRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/edit-profile': {
+      id: '/edit-profile'
+      path: '/edit-profile'
+      fullPath: '/edit-profile'
+      preLoaderRoute: typeof EditProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -166,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DetectRoute: DetectRoute,
   DietRoute: DietRoute,
+  EditProfileRoute: EditProfileRoute,
   HomeRoute: HomeRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
