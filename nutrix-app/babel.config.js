@@ -1,16 +1,8 @@
 module.exports = function (api) {
   api.cache(true);
+  // Expo SDK 51 resolves the "@/*" tsconfig paths alias natively via Metro,
+  // so no module-resolver plugin is needed here.
   return {
-    presets: [["babel-preset-expo", { jsxImportSource: "react" }]],
-    plugins: [
-      [
-        "module-resolver",
-        {
-          root: ["./"],
-          alias: { "@": "./src" },
-          extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
-        },
-      ],
-    ],
+    presets: ["babel-preset-expo"],
   };
 };
