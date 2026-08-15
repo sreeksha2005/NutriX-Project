@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "NutriX",
+    "slug": "nutrix-app",
+    "version": "1.0.0",
+    "scheme": "nutrix",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#101418",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#101418"
+    },
+    "ios": { "supportsTablet": true },
+    "android": {
+      "adaptiveIcon": { "backgroundColor": "#101418" }
+    },
+    "web": { "bundler": "metro", "output": "static" },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        { "photosPermission": "NutriX needs access to your photos to analyze food images." }
+      ]
+    ],
+    "experiments": { "typedRoutes": true },
+    "extra": {
+      "apiBaseUrl": "http://192.168.1.10:5000"
+    }
+  }
+}
