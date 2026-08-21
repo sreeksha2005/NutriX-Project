@@ -7,13 +7,15 @@
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "backgroundColor": "#101418",
+    "newArchEnabled": true,
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#101418"
     },
     "ios": { "supportsTablet": true },
     "android": {
-      "adaptiveIcon": { "backgroundColor": "#101418" }
+      "adaptiveIcon": { "backgroundColor": "#101418" },
+      "edgeToEdgeEnabled": true
     },
     "web": { "bundler": "metro", "output": "static" },
     "plugins": [
