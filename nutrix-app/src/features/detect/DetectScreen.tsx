@@ -117,8 +117,8 @@ export function DetectScreen() {
             "Shoot from directly above the plate.",
             "Use natural light — avoid heavy shadows.",
             "Keep one dish per photo for best accuracy.",
-          ].map((t) => (
-            <View key={t} style={{ flexDirection: "row", gap: 8 }}>
+          ].map((t, i) => (
+            <View key={`tip-${i}`} style={{ flexDirection: "row", gap: 8 }}>
               <Text style={{ color: colors.mint }}>•</Text>
               <Text style={styles.tip}>{t}</Text>
             </View>

@@ -70,7 +70,7 @@ export function ResultScreen() {
 
       <SectionTitle>Smart tips</SectionTitle>
       {result.tips.map((t, i) => (
-        <FadeIn key={t} delay={250 + i * 70} style={{ marginBottom: 10 }}>
+        <FadeIn key={`tip-${i}`} delay={250 + i * 70} style={{ marginBottom: 10 }}>
           <Card style={{ flexDirection: "row", gap: 12, paddingVertical: 14 }}>
             <View style={styles.tipIcon}>
               <Ionicons name="bulb-outline" size={16} color={colors.amber} />
