@@ -1,22 +1,57 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
 import { Card, Chip, FadeIn, Press, Progress, Screen, SectionTitle } from "@/components/ui";
 import { useProfile } from "@/store/ProfileProvider";
 import { colors, radius, shadow, tint } from "@/theme";
 
 const WEEK = [
-  { d: "M", v: 62 },
-  { d: "T", v: 78 },
-  { d: "W", v: 45 },
-  { d: "T", v: 88 },
-  { d: "F", v: 70 },
-  { d: "S", v: 94 },
-  { d: "S", v: 55 },
+  { id: "mon", d: "M", v: 62 },
+  { id: "tue", d: "T", v: 78 },
+  { id: "wed", d: "W", v: 45 },
+  { id: "thu", d: "T", v: 88 },
+  { id: "fri", d: "F", v: 70 },
+  { id: "sat", d: "S", v: 94 },
+  { id: "sun", d: "S", v: 55 },
 ];
 
 export function ProfileScreen() {
-  const { profile, bmi, calorieGoal, signOut } = useProfile();
+  const { profile, bmi, calorieGoal, signOut, updateProfile } = useProfile();
+
+  const pickAvatar = async (source: "camera" | "library") => {
+    const permission =
+      source === "camera"
+        ? await ImagePicker.requestCameraPermissionsAsync()
+        : await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!permission.granted) {
+      Alert.alert("Permission needed", "Enable photo access in your device settings.");
+      return;
+    }
+    const result =
+      source === "camera"
+        ? await ImagePicker.launchCameraAsync({ quality: 0.7, allowsEditing: true, aspect: [1, 1] })
+        : await ImagePicker.launchImageLibraryAsync({ quality: 0.7, allowsEditing: true, aspect: [1, 1] });
+    if (!result.canceled && result.assets[0]) {
+      await updateProfile({ profileImage: result.assets[0].uri });
+    }
+  };
+
+  const chooseAvatar = () =>
+    Alert.alert("Profile photo", "Choose a source", [
+      { text: "Take photo", onPress: () => void pickAvatar("camera") },
+      { text: "Choose from gallery", onPress: () => void pickAvatar("library") },
+      ...(profile.profileImage
+        ? [
+            {
+              text: "Remove photo",
+              style: "destructive" as const,
+              onPress: () => void updateProfile({ profileImage: "" }),
+            },
+          ]
+        : []),
+      { text: "Cancel", style: "cancel" as const },
+    ]);
 
   const confirmLogout = () =>
     Alert.alert("Log out", "You will need to sign in again.", [
