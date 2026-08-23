@@ -22,7 +22,10 @@
       "expo-router",
       [
         "expo-image-picker",
-        { "photosPermission": "NutriX needs access to your photos to analyze food images." }
+        {
+          "photosPermission": "NutriX needs access to your photos to analyze food images.",
+          "cameraPermission": "NutriX needs access to your camera to analyze food images."
+        }
       ]
     ],
     "experiments": { "typedRoutes": true },
