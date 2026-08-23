@@ -44,7 +44,7 @@ export function DietScreen() {
         return (
           <FadeIn key={m.id} delay={160 + i * 70} style={{ marginBottom: 12 }}>
             <Press onPress={() => toggleMeal(m.id)}>
-              <Card style={[styles.meal, done && { borderColor: tint(colors.mint, "66") }]}>
+            <Card style={[styles.meal, ...(done ? [{ borderColor: tint(colors.mint, "66") }] : [])]}>
                 <View style={[styles.mealIcon, { backgroundColor: tint(m.tint) }]}>
                   <Text style={{ fontSize: 20 }}>{m.icon}</Text>
                 </View>

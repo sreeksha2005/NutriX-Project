@@ -56,7 +56,10 @@ export function ChipPicker({
             <Press
               key={opt}
               onPress={() => onChange(opt)}
-              style={[styles.pill, active && { backgroundColor: colors.mint, borderColor: colors.mint }]}
+              style={[
+                styles.pill,
+                ...(active ? [{ backgroundColor: colors.mint, borderColor: colors.mint }] : []),
+              ]}
             >
               <Text style={{ color: active ? colors.mintDark : colors.sub, fontSize: 12, fontWeight: "800" }}>
                 {opt}

@@ -1,8 +1,9 @@
 # NutriX — AI-Based Nutrition Analysis & Diet Recommendation (Mobile App)
 
-Complete Expo + React Native + TypeScript rebuild with a layered architecture:
+Complete Expo SDK 54 + React Native 0.81 + TypeScript rebuild with a layered architecture:
 **routes → features → store → services → utils/theme**.
 Theme is the same "Midnight Nutri" dark palette (`#101418` base, `#38E08A` mint, `#FFB84D` amber).
+The New Architecture is enabled by default in `app.json`.
 
 ---
 
@@ -90,6 +91,8 @@ nutrix-app/
 ---
 
 ## 2. Run it on your laptop
+
+Requires **Expo SDK 54** / **Expo Go** on your phone.
 
 ```bash
 cd nutrix-app
