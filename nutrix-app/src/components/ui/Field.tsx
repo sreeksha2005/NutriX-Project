@@ -60,6 +60,7 @@ export function ChipPicker({
                 styles.pill,
                 ...(active ? [{ backgroundColor: colors.mint, borderColor: colors.mint }] : []),
               ]}
+            >
               <Text style={{ color: active ? colors.mintDark : colors.sub, fontSize: 12, fontWeight: "800" }}>
                 {opt}
               </Text>
