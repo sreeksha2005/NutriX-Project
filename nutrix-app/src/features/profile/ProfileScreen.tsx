@@ -70,9 +70,19 @@ export function ProfileScreen() {
     <Screen>
       <FadeIn>
         <View style={{ alignItems: "center" }}>
-          <View style={styles.avatar}>
-            <Text style={styles.avatarText}>{(profile.name || "N").charAt(0).toUpperCase()}</Text>
-          </View>
+          <Press onPress={chooseAvatar}>
+            <View style={styles.avatar}>
+              {profile.profileImage ? (
+                <Image source={{ uri: profile.profileImage }} style={styles.avatarImage} />
+              ) : (
+                <Text style={styles.avatarText}>{(profile.name || "N").charAt(0).toUpperCase()}</Text>
+              )}
+              <View style={styles.avatarBadge}>
+                <Ionicons name="camera" size={14} color={colors.mintDark} />
+              </View>
+            </View>
+          </Press>
+          <Text style={styles.avatarHint}>Tap photo to change</Text>
           <Text style={styles.name}>{profile.name || "Your name"}</Text>
           <Text style={styles.email}>{profile.email || "Add your details to personalise NutriX"}</Text>
           <View style={{ marginTop: 10 }}>
