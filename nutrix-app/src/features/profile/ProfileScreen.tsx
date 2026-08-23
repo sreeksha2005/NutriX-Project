@@ -131,7 +131,7 @@ export function ProfileScreen() {
         <Card>
           <View style={styles.week}>
             {WEEK.map((d) => (
-              <View key={d.d} style={{ alignItems: "center", flex: 1, gap: 8 }}>
+              <View key={d.id} style={{ alignItems: "center", flex: 1, gap: 8 }}>
                 <View style={styles.barTrack}>
                   <View style={[styles.barFill, { height: `${d.v}%` }]} />
                 </View>
@@ -179,9 +179,25 @@ const styles = StyleSheet.create({
     backgroundColor: colors.mint,
     alignItems: "center",
     justifyContent: "center",
+    overflow: "visible",
     ...shadow.glow,
   },
   avatarText: { color: colors.mintDark, fontSize: 34, fontWeight: "800" },
+  avatarImage: { width: "100%", height: "100%", borderRadius: 30 },
+  avatarBadge: {
+    position: "absolute",
+    right: -4,
+    bottom: -4,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: colors.mint,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 3,
+    borderColor: colors.bg,
+  },
+  avatarHint: { color: colors.sub, fontSize: 11, marginTop: 10 },
   name: { color: colors.text, fontSize: 21, fontWeight: "800", marginTop: 14 },
   email: { color: colors.sub, fontSize: 12, marginTop: 4, textAlign: "center" },
   statsRow: { flexDirection: "row", gap: 12, marginTop: 22 },
