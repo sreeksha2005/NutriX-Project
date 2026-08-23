@@ -92,6 +92,8 @@ nutrix-app/
 
 ## 2. Run it on your laptop
 
+Requires **Expo SDK 54** / **Expo Go** on your phone.
+
 ```bash
 cd nutrix-app
 npm install
