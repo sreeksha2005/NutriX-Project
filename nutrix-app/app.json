@@ -5,16 +5,18 @@
     "version": "1.0.0",
     "scheme": "nutrix",
     "orientation": "portrait",
+    "icon": "./assets/nutrix-logo.png",
     "userInterfaceStyle": "dark",
     "backgroundColor": "#101418",
     "newArchEnabled": true,
     "splash": {
+      "image": "./assets/nutrix-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#101418"
     },
     "ios": { "supportsTablet": true },
     "android": {
-      "adaptiveIcon": { "backgroundColor": "#101418" },
+      "adaptiveIcon": { "foregroundImage": "./assets/nutrix-logo.png", "backgroundColor": "#101418" },
       "edgeToEdgeEnabled": true
     },
     "web": { "bundler": "metro", "output": "static" },

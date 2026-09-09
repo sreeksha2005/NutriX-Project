@@ -1,4 +1,3 @@
-import { Platform } from "react-native";
 import { Tabs } from "expo-router";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { FLOATING_TAB_BAR_BOTTOM, FLOATING_TAB_BAR_HEIGHT } from "@/constants/navigation";

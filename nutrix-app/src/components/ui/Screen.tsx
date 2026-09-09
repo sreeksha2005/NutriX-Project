@@ -23,7 +23,12 @@ export function Screen({
   const insets = useSafeAreaInsets();
   const tabBarClearance =
     FLOATING_TAB_BAR_HEIGHT + Math.max(FLOATING_TAB_BAR_BOTTOM, insets.bottom) + TAB_CONTENT_GAP;
-  const bottom = padBottom ?? (hasTabBar ? tabBarClearance : insets.bottom + TAB_CONTENT_GAP);
+  const bottom =
+    padBottom !== undefined
+      ? padBottom + insets.bottom
+      : hasTabBar
+        ? tabBarClearance
+        : insets.bottom + TAB_CONTENT_GAP;
   const top = 24 + insets.top;
 
   if (!scroll)
