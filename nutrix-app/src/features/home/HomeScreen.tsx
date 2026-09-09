@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { Card, Chip, FadeIn, Press, Progress, Ring, Screen, SectionTitle } from "@/components/ui";
+import { BrandHeader, Card, Chip, FadeIn, Press, Progress, Ring, Screen, SectionTitle } from "@/components/ui";
 import { DAILY_TIPS, MEALS } from "@/constants/meals";
 import { useDiary } from "@/store/DiaryProvider";
 import { useProfile } from "@/store/ProfileProvider";
@@ -30,7 +30,8 @@ export function HomeScreen() {
   ] as const;
 
   return (
-    <Screen>
+    <Screen hasTabBar>
+      <BrandHeader />
       <FadeIn>
         <View style={styles.header}>
           <View style={{ flex: 1 }}>

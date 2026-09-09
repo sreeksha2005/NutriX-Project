@@ -1,6 +1,7 @@
 import { Platform } from "react-native";
 import { Tabs } from "expo-router";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
+import { FLOATING_TAB_BAR_BOTTOM, FLOATING_TAB_BAR_HEIGHT } from "@/constants/navigation";
 import { colors, radius } from "@/theme";
 
 export default function TabsLayout() {
@@ -15,8 +16,8 @@ export default function TabsLayout() {
           position: "absolute",
           left: 16,
           right: 16,
-          bottom: Platform.OS === "ios" ? 24 : 16,
-          height: 68,
+          bottom: FLOATING_TAB_BAR_BOTTOM,
+          height: FLOATING_TAB_BAR_HEIGHT,
           paddingTop: 8,
           paddingBottom: 8,
           borderRadius: radius.xl,

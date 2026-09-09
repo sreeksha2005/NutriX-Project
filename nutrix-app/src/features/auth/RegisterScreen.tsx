@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, Text } from "react-native";
 import { router } from "expo-router";
-import { ChipPicker, FadeIn, Field, Press, PrimaryButton, Screen } from "@/components/ui";
+import { BrandHeader, ChipPicker, FadeIn, Field, Press, PrimaryButton, Screen } from "@/components/ui";
 import { useProfile } from "@/store/ProfileProvider";
 import { colors } from "@/theme";
 import type { Goal } from "@/types";
@@ -25,6 +25,7 @@ export function RegisterScreen() {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
       <Screen padBottom={40}>
+        <BrandHeader />
         <FadeIn>
           <Text style={styles.title}>Create your account</Text>
           <Text style={styles.subtitle}>Takes 30 seconds — you can refine details later.</Text>

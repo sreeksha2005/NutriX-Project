@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Animated, Easing, Image, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { Card, FadeIn, Press, Screen, SectionTitle } from "@/components/ui";
+import { BrandHeader, Card, FadeIn, Press, Screen, SectionTitle } from "@/components/ui";
 import { DETECTABLE } from "@/constants/meals";
 import { colors, radius, shadow, tint } from "@/theme";
 import { useFoodDetection } from "./useFoodDetection";
@@ -45,7 +45,8 @@ export function DetectScreen() {
   };
 
   return (
-    <Screen>
+    <Screen hasTabBar>
+      <BrandHeader />
       <FadeIn>
         <Text style={styles.title}>Food detection</Text>
         <Text style={styles.subtitle}>Upload a photo and NutriX analyzes its nutrition.</Text>
