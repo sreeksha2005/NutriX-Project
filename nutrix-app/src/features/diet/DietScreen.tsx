@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Card, Chip, FadeIn, Press, Progress, Screen, SectionTitle } from "@/components/ui";
+import { BrandHeader, Card, Chip, FadeIn, Press, Progress, Screen, SectionTitle } from "@/components/ui";
 import { MEALS } from "@/constants/meals";
 import { useDiary } from "@/store/DiaryProvider";
 import { useProfile } from "@/store/ProfileProvider";
@@ -18,7 +18,8 @@ export function DietScreen() {
   ];
 
   return (
-    <Screen>
+    <Screen hasTabBar>
+      <BrandHeader />
       <FadeIn>
         <Text style={styles.title}>Your diet plan</Text>
         <Text style={styles.subtitle}>Personalised for your goal: {profile.goal}</Text>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, Text, View } from "react-native";
 import { router } from "expo-router";
-import { FadeIn, Field, Press, PrimaryButton, Screen } from "@/components/ui";
+import { BrandHeader, FadeIn, Field, Press, PrimaryButton, Screen } from "@/components/ui";
 import { useProfile } from "@/store/ProfileProvider";
 import { colors } from "@/theme";
 import { BreathingLogo } from "./BreathingLogo";
@@ -19,6 +19,7 @@ export function LoginScreen() {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
       <Screen padBottom={40}>
+        <BrandHeader />
         <FadeIn>
           <View style={{ alignItems: "center", marginTop: 20 }}>
             <BreathingLogo />

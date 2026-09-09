@@ -1,23 +1,34 @@
 import type { ReactNode } from "react";
-import { Platform, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  FLOATING_TAB_BAR_BOTTOM,
+  FLOATING_TAB_BAR_HEIGHT,
+  TAB_CONTENT_GAP,
+} from "@/constants/navigation";
 import { colors } from "@/theme";
-
-/** Height of the floating tab bar plus the gap beneath it. */
-const TAB_BAR_SPACE = 68 + (Platform.OS === "ios" ? 24 : 16);
 
 /** Standard scrollable dark screen with room for the floating tab bar. */
 export function Screen({
   children,
   scroll = true,
   padBottom,
+  hasTabBar = false,
 }: {
   children: ReactNode;
   scroll?: boolean;
   padBottom?: number;
+  hasTabBar?: boolean;
 }) {
   const insets = useSafeAreaInsets();
-  const bottom = (padBottom ?? TAB_BAR_SPACE + 32) + insets.bottom;
+  const tabBarClearance =
+    FLOATING_TAB_BAR_HEIGHT + Math.max(FLOATING_TAB_BAR_BOTTOM, insets.bottom) + TAB_CONTENT_GAP;
+  const bottom =
+    padBottom !== undefined
+      ? padBottom + insets.bottom
+      : hasTabBar
+        ? tabBarClearance
+        : insets.bottom + TAB_CONTENT_GAP;
   const top = 24 + insets.top;
 
   if (!scroll)
@@ -28,7 +39,7 @@ export function Screen({
       contentContainerStyle={{ paddingBottom: bottom }}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
-      contentInsetAdjustmentBehavior="always"
+      contentInsetAdjustmentBehavior="never"
     >
       {children}
     </ScrollView>

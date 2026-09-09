@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
-import { Card, Chip, FadeIn, Press, Progress, Screen, SectionTitle } from "@/components/ui";
+import { BrandHeader, Card, Chip, FadeIn, Press, Progress, Screen, SectionTitle } from "@/components/ui";
 import { colors, radius, shadow, tint } from "@/theme";
 import type { DetectionResult } from "@/types";
 
@@ -21,6 +21,7 @@ export function ResultScreen() {
   if (!result) {
     return (
       <Screen padBottom={40}>
+        <BrandHeader />
         <Text style={styles.title}>No result</Text>
         <Text style={styles.subtitle}>Run a scan from the Detect tab first.</Text>
         <Press style={styles.cta} onPress={() => router.replace("/(tabs)/detect")}>
@@ -32,6 +33,7 @@ export function ResultScreen() {
 
   return (
     <Screen padBottom={40}>
+      <BrandHeader />
       <FadeIn>
         <Press style={styles.back} onPress={() => router.back()}>
           <Ionicons name="chevron-down" size={18} color={colors.text} />

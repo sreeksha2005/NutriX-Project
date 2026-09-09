@@ -2,7 +2,7 @@ import { Alert, Image, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
-import { Card, Chip, FadeIn, Press, Progress, Screen, SectionTitle } from "@/components/ui";
+import { BrandHeader, Card, Chip, FadeIn, Press, Progress, Screen, SectionTitle } from "@/components/ui";
 import { useProfile } from "@/store/ProfileProvider";
 import { colors, radius, shadow, tint } from "@/theme";
 
@@ -67,7 +67,8 @@ export function ProfileScreen() {
     ]);
 
   return (
-    <Screen>
+    <Screen hasTabBar>
+      <BrandHeader />
       <FadeIn>
         <View style={{ alignItems: "center" }}>
           <Press onPress={chooseAvatar}>

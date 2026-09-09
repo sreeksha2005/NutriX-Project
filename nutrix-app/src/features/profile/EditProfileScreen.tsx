@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Alert, KeyboardAvoidingView, Platform, StyleSheet, Text } from "react-native";
 import { router } from "expo-router";
-import { ChipPicker, Field, FadeIn, PrimaryButton, Screen } from "@/components/ui";
+import { BrandHeader, ChipPicker, Field, FadeIn, PrimaryButton, Screen } from "@/components/ui";
 import { useProfile } from "@/store/ProfileProvider";
 import { colors } from "@/theme";
 import type { Gender, Goal } from "@/types";
@@ -26,6 +26,7 @@ export function EditProfileScreen() {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
       <Screen padBottom={60}>
+        <BrandHeader />
         <FadeIn>
           <Text style={styles.title}>Edit profile</Text>
           <Text style={styles.subtitle}>These values drive your BMI and calorie target.</Text>
