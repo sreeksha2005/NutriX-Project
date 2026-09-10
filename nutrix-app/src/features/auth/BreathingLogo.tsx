@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
-import { Animated, Easing, Text } from "react-native";
-import { colors, shadow } from "@/theme";
+import { Animated, Easing, Image, StyleSheet } from "react-native";
+import { shadow } from "@/theme";
+
+const logo = require("../../../assets/nutrix-logo.png");
 
 /** Logo mark that gently "breathes" — sets the tone on the auth screens. */
 export function BreathingLogo() {
@@ -20,19 +22,22 @@ export function BreathingLogo() {
   return (
     <Animated.View
       style={[
-        {
-          width: 82,
-          height: 82,
-          borderRadius: 28,
-          backgroundColor: colors.mint,
-          alignItems: "center",
-          justifyContent: "center",
-          transform: [{ scale: s }],
-        },
+        styles.frame,
         shadow.glow,
+        { transform: [{ scale: s }] },
       ]}
     >
-      <Text style={{ fontSize: 36 }}>🥗</Text>
+      <Image source={logo} style={styles.logo} resizeMode="cover" accessibilityLabel="NutriX logo" />
     </Animated.View>
   );
 }
+
+const styles = StyleSheet.create({
+  frame: {
+    width: 112,
+    height: 112,
+    borderRadius: 28,
+    overflow: "hidden",
+  },
+  logo: { width: "100%", height: "100%" },
+});
