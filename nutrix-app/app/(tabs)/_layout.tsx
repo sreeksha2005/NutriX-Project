@@ -1,9 +1,12 @@
 import { Tabs } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { FLOATING_TAB_BAR_BOTTOM, FLOATING_TAB_BAR_HEIGHT } from "@/constants/navigation";
 import { colors, radius } from "@/theme";
 
 export default function TabsLayout() {
+  const insets = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
@@ -15,7 +18,7 @@ export default function TabsLayout() {
           position: "absolute",
           left: 16,
           right: 16,
-          bottom: FLOATING_TAB_BAR_BOTTOM,
+          bottom: insets.bottom + FLOATING_TAB_BAR_BOTTOM,
           height: FLOATING_TAB_BAR_HEIGHT,
           paddingTop: 8,
           paddingBottom: 8,

@@ -22,7 +22,7 @@ export function Screen({
 }) {
   const insets = useSafeAreaInsets();
   const tabBarClearance =
-    FLOATING_TAB_BAR_HEIGHT + Math.max(FLOATING_TAB_BAR_BOTTOM, insets.bottom) + TAB_CONTENT_GAP;
+    FLOATING_TAB_BAR_HEIGHT + FLOATING_TAB_BAR_BOTTOM + insets.bottom + TAB_CONTENT_GAP;
   const bottom =
     padBottom !== undefined
       ? padBottom + insets.bottom
@@ -35,13 +35,15 @@ export function Screen({
     return <View style={[styles.base, { paddingTop: top, paddingBottom: bottom }]}>{children}</View>;
   return (
     <ScrollView
-      style={[styles.base, { paddingTop: top }]}
-      contentContainerStyle={{ paddingBottom: bottom }}
+      style={styles.base}
+      contentContainerStyle={{ paddingTop: top }}
+      scrollIndicatorInsets={{ bottom }}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
       contentInsetAdjustmentBehavior="never"
     >
       {children}
+      <View style={{ height: bottom }} accessible={false} />
     </ScrollView>
   );
 }
