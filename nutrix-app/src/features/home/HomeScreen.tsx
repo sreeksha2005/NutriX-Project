@@ -40,9 +40,6 @@ export function HomeScreen() {
               {firstName(profile.name)}
             </Text>
           </View>
-          <Press style={styles.avatar} onPress={() => router.push("/(tabs)/profile")}>
-            <Text style={styles.avatarText}>{(profile.name || "N").charAt(0).toUpperCase()}</Text>
-          </Press>
         </View>
       </FadeIn>
 

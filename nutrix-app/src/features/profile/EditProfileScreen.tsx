@@ -33,7 +33,7 @@ export function EditProfileScreen() {
         </FadeIn>
 
         <FadeIn delay={80}>
-          <Field label="Full name" value={draft.name} onChangeText={set("name")} placeholder="Sreeksha G" />
+          <Field label="Full name" value={draft.name} onChangeText={set("name")} placeholder="Enter your name" />
           <Field
             label="Email"
             value={draft.email}

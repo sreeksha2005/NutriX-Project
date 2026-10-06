@@ -148,8 +148,8 @@ export function ProfileScreen() {
         <Card style={{ padding: 6 }}>
           {[
             { icon: "create-outline", label: "Edit profile", onPress: () => router.push("/edit-profile") },
-            { icon: "notifications-outline", label: "Reminders", onPress: () => {} },
-            { icon: "shield-checkmark-outline", label: "Privacy", onPress: () => {} },
+            { icon: "notifications-outline", label: "Reminders", onPress: () => router.push("/reminders") },
+            { icon: "shield-checkmark-outline", label: "Privacy", onPress: () => router.push("/privacy") },
           ].map((row) => (
             <Press key={row.label} style={styles.row} onPress={row.onPress}>
               <View style={styles.rowIcon}>

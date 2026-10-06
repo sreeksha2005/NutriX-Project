@@ -24,6 +24,8 @@ export default function RootLayout() {
             <Stack.Screen name="(tabs)" options={{ animation: "fade" }} />
             <Stack.Screen name="result" options={{ animation: "slide_from_bottom" }} />
             <Stack.Screen name="edit-profile" options={{ animation: "slide_from_bottom" }} />
+            <Stack.Screen name="reminders" />
+            <Stack.Screen name="privacy" />
           </Stack>
         </DiaryProvider>
       </ProfileProvider>

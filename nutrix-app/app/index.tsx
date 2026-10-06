@@ -21,6 +21,6 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
-  loading: { flex: 1, backgroundColor: "#A9DFC4", alignItems: "center", justifyContent: "center" },
-  logo: { width: 280, height: 280 },
+  loading: { flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" },
+  logo: { width: 160, height: 160, borderRadius: 36 },
 });

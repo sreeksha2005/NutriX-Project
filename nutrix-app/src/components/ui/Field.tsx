@@ -9,6 +9,7 @@ export function Field({
   placeholder,
   keyboardType = "default",
   secureTextEntry,
+  error,
 }: {
   label: string;
   value: string;
@@ -16,6 +17,7 @@ export function Field({
   placeholder?: string;
   keyboardType?: KeyboardTypeOptions;
   secureTextEntry?: boolean;
+  error?: string | null;
 }) {
   return (
     <View style={{ marginBottom: 14 }}>
@@ -28,8 +30,9 @@ export function Field({
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
         autoCapitalize="none"
-        style={styles.input}
+        style={[styles.input, ...(error ? [{ borderColor: colors.danger }] : [])]}
       />
+      {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 }
@@ -81,6 +84,7 @@ export function PrimaryButton({ title, onPress, disabled }: { title: string; onP
 }
 
 const styles = StyleSheet.create({
+  error: { color: colors.danger, fontSize: 11, marginTop: 6, fontWeight: "600" },
   label: { color: colors.sub, fontSize: 11, fontWeight: "800", marginBottom: 6 },
   input: {
     backgroundColor: colors.surface,
