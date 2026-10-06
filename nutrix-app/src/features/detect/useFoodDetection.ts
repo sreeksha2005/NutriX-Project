@@ -35,8 +35,9 @@ export function useFoodDetection() {
     setError(null);
     try {
       return await detectFood(image);
-    } catch {
-      setError("Could not reach the analysis server. Check the API URL in app.json.");
+    } catch (err) {
+      console.error("DETECTION ERROR:", err);
+      setError(String(err));
       return null;
     } finally {
       setAnalyzing(false);

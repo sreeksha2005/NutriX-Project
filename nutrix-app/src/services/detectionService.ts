@@ -22,15 +22,58 @@ const MOCK: DetectionResult = {
   ],
 };
 
-/**
- * Sends the picked image to the ML endpoint.
- * While the model server is not ready, USE_MOCK_DETECTION returns sample data
- * after a short delay so the UI flow stays testable.
- */
+type BackendDetectionResult = {
+  food_title: string;
+  total_calories: number;
+  total_weight_g: number;
+  macros: {
+    key: string;
+    value: number;
+    unit: string;
+    pct: number;
+    color: string;
+  }[];
+  verdict: string;
+  tips: string[];
+  detected_items: {
+    confidence_pct: number;
+  }[];
+};
+
 export async function detectFood(imageUri: string): Promise<DetectionResult> {
   if (USE_MOCK_DETECTION) {
     await new Promise((r) => setTimeout(r, 1600));
     return MOCK;
   }
-  return apiClient.upload<DetectionResult>("/predict", imageUri);
+
+  const data = await apiClient.upload<BackendDetectionResult>(
+    "/api/detect",
+    imageUri,
+  );
+
+  return {
+    name: data.food_title,
+    confidence: Math.round(
+      data.detected_items.reduce(
+        (sum, item) => sum + item.confidence_pct,
+        0,
+      ) / data.detected_items.length,
+    ),
+    kcal: Math.round(data.total_calories),
+    serving: `${data.serving_summary ?? `${data.total_weight_g} g`}`,
+    macros: data.macros.map((macro) => ({
+      ...macro,
+      color:
+        macro.color === "mint"
+          ? colors.mint
+          : macro.color === "amber"
+            ? colors.amber
+            : macro.color === "berry"
+              ? colors.berry
+              : colors.sky,
+    })),
+    verdict: data.verdict,
+    tips: data.tips,
+  };
 }
+

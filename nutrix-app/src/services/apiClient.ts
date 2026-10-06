@@ -1,4 +1,6 @@
 import { API_BASE_URL } from "@/constants/config";
+import { fetch } from "expo/fetch";
+import { File } from "expo-file-system";
 
 export class ApiError extends Error {
   constructor(
@@ -34,16 +36,17 @@ export const apiClient = {
 
   /** Multipart upload — used to send a food photo to the model server. */
   async upload<T>(path: string, uri: string, field = "image"): Promise<T> {
-    const form = new FormData();
-    const name = uri.split("/").pop() ?? "food.jpg";
-    const ext = name.split(".").pop()?.toLowerCase() ?? "jpg";
-    form.append(field, {
-      uri,
-      name,
-      type: `image/${ext === "jpg" ? "jpeg" : ext}`,
-    } as unknown as Blob);
+    const file = new File(uri);
 
-    const res = await fetch(`${API_BASE_URL}${path}`, { method: "POST", body: form });
+    const form = new FormData();
+    form.append(field, file);
+
+    const res = await fetch(`${API_BASE_URL}${path}`, {
+      method: "POST",
+      body: form,
+    });
+
     return handle<T>(res);
   },
 };
+
