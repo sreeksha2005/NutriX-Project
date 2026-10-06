@@ -9,19 +9,31 @@
     "userInterfaceStyle": "dark",
     "backgroundColor": "#101418",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/nutrix-logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#101418"
+    "ios": {
+      "supportsTablet": true
     },
-    "ios": { "supportsTablet": true },
     "android": {
-      "adaptiveIcon": { "foregroundImage": "./assets/nutrix-logo.png", "backgroundColor": "#101418" },
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/nutrix-logo.png",
+        "backgroundColor": "#101418"
+      },
       "edgeToEdgeEnabled": true
     },
-    "web": { "bundler": "metro", "output": "static" },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
     "plugins": [
       "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/nutrix-logo.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#101418"
+        }
+      ],
       [
         "expo-image-picker",
         {
@@ -30,7 +42,9 @@
         }
       ]
     ],
-    "experiments": { "typedRoutes": true },
+    "experiments": {
+      "typedRoutes": true
+    },
     "extra": {
       "apiBaseUrl": "http://192.168.1.10:5000"
     }
