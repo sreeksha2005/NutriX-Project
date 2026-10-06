@@ -1,26 +1,27 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { colors } from "@/theme";
 
-const logo = require("../../../assets/nutrix-brand-badge.png");
-
-/** Compact app identity shown consistently at the top-left of every screen. */
+/** Minimal text-only app name shown consistently at the top-left of every screen. */
 export function BrandHeader() {
   return (
     <View style={styles.header} accessibilityRole="header">
-      <Image source={logo} style={styles.logo} resizeMode="contain" accessibilityLabel="NutriX botanical logo" />
-      <Text style={styles.name}>NutriX</Text>
+      <Text style={styles.name}>
+        Nutri<Text style={styles.x}>X</Text>
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "flex-start",
-    gap: 10,
-    marginBottom: 18,
+  header: { alignSelf: "flex-start", marginBottom: 18 },
+  name: {
+    color: colors.text,
+    fontSize: 26,
+    fontStyle: "italic",
+    fontWeight: "700",
+    letterSpacing: 0.3,
+    // Built-in serif faces: elegant, distinctive and need no font download.
+    fontFamily: Platform.select({ ios: "Georgia", android: "serif", default: "Georgia, serif" }),
   },
-  logo: { width: 40, height: 40 },
-  name: { color: colors.text, fontSize: 22, fontWeight: "800" },
+  x: { color: colors.mint },
 });
