@@ -19,14 +19,25 @@ async function handle<T>(res: Response): Promise<T> {
   return (await res.json()) as T;
 }
 
+/** Wraps fetch so an unreachable server shows a clear message instead of a crash. */
+async function request(path: string, init?: RequestInit): Promise<Response> {
+  try {
+    return await fetch(`${API_BASE_URL}${path}`, init as never) as unknown as Response;
+  } catch {
+    throw new ApiError(
+      `Can't reach the NutriX server at ${API_BASE_URL}. Make sure it is running and your phone is on the same Wi-Fi.`,
+    );
+  }
+}
+
 export const apiClient = {
   async get<T>(path: string): Promise<T> {
-    const res = await fetch(`${API_BASE_URL}${path}`);
+    const res = await request(path);
     return handle<T>(res);
   },
 
   async post<T>(path: string, body: unknown): Promise<T> {
-    const res = await fetch(`${API_BASE_URL}${path}`, {
+    const res = await request(path, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -41,9 +52,9 @@ export const apiClient = {
     const form = new FormData();
     form.append(field, file);
 
-    const res = await fetch(`${API_BASE_URL}${path}`, {
+    const res = await request(path, {
       method: "POST",
-      body: form,
+      body: form as never,
     });
 
     return handle<T>(res);

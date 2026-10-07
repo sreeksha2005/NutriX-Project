@@ -26,6 +26,7 @@ type BackendDetectionResult = {
   food_title: string;
   total_calories: number;
   total_weight_g: number;
+  serving_summary?: string;
   macros: {
     key: string;
     value: number;
@@ -54,10 +55,10 @@ export async function detectFood(imageUri: string): Promise<DetectionResult> {
   return {
     name: data.food_title,
     confidence: Math.round(
-      data.detected_items.reduce(
+      (data.detected_items.length ? data.detected_items : [{ confidence_pct: 0 }]).reduce(
         (sum, item) => sum + item.confidence_pct,
         0,
-      ) / data.detected_items.length,
+      ) / Math.max(data.detected_items.length, 1),
     ),
     kcal: Math.round(data.total_calories),
     serving: `${data.serving_summary ?? `${data.total_weight_g} g`}`,

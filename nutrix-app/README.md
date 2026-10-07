@@ -158,3 +158,14 @@ Nothing else in the app needs to change.
 2. Add a history screen (past scans + weekly calorie trend chart).
 3. Push notifications for meal reminders (`expo-notifications`).
 4. A splash/onboarding screen — looks great in the viva demo.
+
+## Build an Android APK
+
+1. Set your backend address in `app.json` → `expo.extra.apiBaseUrl` (e.g. `http://192.168.1.46:8000`).
+2. `npm install -g eas-cli`
+3. `eas login` (free Expo account)
+4. `eas build -p android --profile preview`
+5. Open the link Expo prints on your phone and install the APK.
+
+The phone must reach the server: same Wi-Fi as the laptop running the backend,
+or host the backend online and put that public URL in `apiBaseUrl`.
