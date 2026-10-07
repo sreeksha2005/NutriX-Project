@@ -19,7 +19,13 @@
         "foregroundImage": "./assets/nutrix-icon-adaptive.png",
         "backgroundColor": "#F9F1E6"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.nutrix.app",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "INTERNET"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -41,6 +47,14 @@
         {
           "photosPermission": "NutriX needs access to your photos to analyze food images.",
           "cameraPermission": "NutriX needs access to your camera to analyze food images."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
         }
       ]
     ],
