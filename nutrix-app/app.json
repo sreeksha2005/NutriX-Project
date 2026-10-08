@@ -23,8 +23,9 @@
       "package": "com.nutrix.app",
       "versionCode": 1,
       "permissions": [
-        "CAMERA",
-        "INTERNET"
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECORD_AUDIO"
       ]
     },
     "web": {
@@ -62,7 +63,11 @@
       "typedRoutes": true
     },
     "extra": {
-      "apiBaseUrl": "http://192.168.1.46:8000"
+      "apiBaseUrl": "http://192.168.1.46:8000",
+      "router": {},
+      "eas": {
+        "projectId": "ab0b8e05-96d5-4048-b985-9b072c15942e"
+      }
     }
   }
 }

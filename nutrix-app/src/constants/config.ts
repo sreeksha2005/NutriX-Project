@@ -3,7 +3,7 @@ import Constants from "expo-constants";
 /** Base URL of the team's Flask/FastAPI model server. Override in app.json → extra.apiBaseUrl */
 export const API_BASE_URL: string =
   (Constants.expoConfig?.extra as { apiBaseUrl?: string } | undefined)?.apiBaseUrl ??
-  "http://192.168.1.46:8000";
+  "https://nutrix-backend-1d48.onrender.com";
 
 /** Set false once the real /predict endpoint is live. */
 export const USE_MOCK_DETECTION = false;
